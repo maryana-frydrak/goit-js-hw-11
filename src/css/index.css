@@ -31,3 +31,16 @@ button[type='submit'] {
 button[type='submit']:hover {
   background-color: #6c8cff;
 }
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  display: none;
+  margin: 20px auto;
+}
+
+.loader.is-visible {
+  display: block;
+}

@@ -1,18 +1,40 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
-import axios from 'axios';
+import { getImagesByQuery } from './js/pixabay-api.js';
+import {
+  createGallery,
+  clearGallery,
+  showLoader,
+  hideLoader,
+} from './js/render-functions.js';
 
 const form = document.querySelector('.form');
-const input = document.getElementsByName('search-text');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  const query = input.values.trim();
+  const query = e.currentTarget.elements.value.trim();
+  console.log(query);
+  if (!query) return;
 
-  if (query === '') {
-    alert('Помилка: рядок пошуку не може бути порожнім!');
-  } else {
-    console.log('Виконується запит для:', query);
-  }
+  clearGallery();
+  showLoader();
+
+  getImagesByQuery(query)
+    .then(data => {
+      if (data.hits.length === 0) {
+        iziToast.error({
+          message: `Sorry, there are no images matching your search query. Please try again!`,
+          background: '#ef4040',
+          position: 'topRight',
+          width: '432',
+          height: '88',
+          borderradius: '4',
+        });
+      } else {
+        createGallery(data.hits);
+      }
+    })
+    .catch(error => console.log(error))
+    .finally(() => hideLoader());
 });

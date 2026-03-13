@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export function getImagesByQuery(query) {
   const API_KEY = '54988394-76eeb0dc25d7c96559704c852';
   const BASE_URL = 'https://pixabay.com';
@@ -13,7 +15,7 @@ export function getImagesByQuery(query) {
 
   return fetch(url).then(res => {
     if (!res.ok) {
-      throw new Error(res.statusText);
+      throw new Error('Помилка завантажених даних');
     }
     return res.json();
   });
