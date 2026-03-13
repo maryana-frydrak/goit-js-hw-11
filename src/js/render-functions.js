@@ -11,6 +11,7 @@ export function createGallery(images) {
 
   const markup = images
     .map(image => {
+      return;
       ` <li class="gallery-item">
         <a class="gallery-link" href="${image.largeImageURL}">
           <img
