@@ -10,9 +10,9 @@ export function createGallery(images) {
   const galleryUl = document.querySelector('.gallery');
 
   const markup = images
-    .map(image => {
-      return;
-      ` <li class="gallery-item">
+    .map(
+      image =>
+        ` <li class="gallery-item">
         <a class="gallery-link" href="${image.largeImageURL}">
           <img
             class="gallery-image"
@@ -26,8 +26,8 @@ export function createGallery(images) {
         <p><b>Comments:</b>${image.comments}</p>
         <p><b>Downloads:</b>${image.downloads}</p>
         </div>
-      </li>`;
-    })
+      </li>`
+    )
     .join('');
 
   galleryUl.insertAdjacentHTML('beforeend', markup);
