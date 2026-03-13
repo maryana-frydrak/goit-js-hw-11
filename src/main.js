@@ -14,7 +14,7 @@ const form = document.querySelector('.form');
 form.addEventListener('submit', e => {
   e.preventDefault();
   const query = e.currentTarget.elements.query.value.trim();
-  console.log(query);
+
   if (!query) return;
 
   clearGallery();
@@ -29,7 +29,6 @@ form.addEventListener('submit', e => {
           position: 'topRight',
           width: '432',
           height: '88',
-          borderradius: '4',
         });
       } else {
         createGallery(data.hits);
@@ -42,7 +41,6 @@ form.addEventListener('submit', e => {
         position: 'topRight',
         width: '432',
         height: '88',
-        borderradius: '4',
       })
     )
     .finally(() => hideLoader());
