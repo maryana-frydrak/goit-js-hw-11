@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { hideLoader, showLoader } from './render-functions';
 
 export async function getImagesByQuery(query) {
   const API_KEY = '54988394-76eeb0dc25d7c96559704c852';
@@ -21,3 +22,25 @@ export async function getImagesByQuery(query) {
     throw new Error('Помилка завантажених даних');
   }
 }
+
+axios.interceptors.request.use(
+  function (config) {
+    showLoader();
+    return config;
+  },
+  function (error) {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  function (response) {
+    hideLoader();
+    return response;
+  },
+  function (error) {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
