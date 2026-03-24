@@ -41,8 +41,8 @@ button[type='submit']:hover {
   margin: 20px auto;
 }
 
-.loader.is-visible {
-  display: block;
+.loader.is-hidden {
+  display: none;
 }
 
 /* HTML: <div class="loader"></div> */
